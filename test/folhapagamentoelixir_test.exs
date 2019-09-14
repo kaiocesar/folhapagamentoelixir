@@ -23,7 +23,7 @@ defmodule FolhapagamentoelixirTest do
 
   test "Calcular INSS" do
     [head] = @valid_attrs
-    assert Folhapagamentoelixir.calcular_inss(head[:salario_base]) == 3000
+    assert Folhapagamentoelixir.calcular_inss(head[:salario_base]) == 330.0
   end
 
   test "Calcular FGTS" do

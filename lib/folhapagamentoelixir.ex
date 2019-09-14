@@ -8,8 +8,8 @@ defmodule Folhapagamentoelixir do
 
   ## Examples
 
-      iex> Folhapagamentoelixir.calcular_inss(1)
-      1
+      iex> Folhapagamentoelixir.calcular_inss(3000)
+      330.0
 
       iex> Folhapagamentoelixir.calcular_fgts()
       :fgts
@@ -45,7 +45,16 @@ defmodule Folhapagamentoelixir do
 
 
   def calcular_inss (salario_base) do
-    salario_base
+    cond do
+      salario_base <= 1751.81 ->
+        salario_base * (8/100)
+      salario_base >= 1751.82 and salario_base <= 2919.72 ->
+        salario_base * (9/100)
+      salario_base >= 2919.73 and salario_base <= 5839.45 ->
+        salario_base * (11/100)
+      salario_base > 5839.45 ->
+        642.34
+    end
   end
 
   def calcular_fgts do
