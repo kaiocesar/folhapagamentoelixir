@@ -1,6 +1,6 @@
 # Folhapagamentoelixir
 
-**TODO: Add description**
+Base de calcular baseada no [link](https://www.jornalcontabil.com.br/folha-de-pagamento-entenda-como-fazer-o-calculo/)
 
 ## Installation
 

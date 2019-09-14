@@ -8,8 +8,8 @@ defmodule Folhapagamentoelixir do
 
   ## Examples
 
-      iex> Folhapagamentoelixir.calcular_inss()
-      :inss
+      iex> Folhapagamentoelixir.calcular_inss(1)
+      1
 
       iex> Folhapagamentoelixir.calcular_fgts()
       :fgts
@@ -43,28 +43,9 @@ defmodule Folhapagamentoelixir do
 
   """
 
-  funcionarios = [
-    %{
-      :nome => "Brains Adams",
-      :salario_base => 3000,
-      :base_horas => 220,
-      :jornada => %{
-        :inicio => 8,
-        :refeicao => 60,
-        :termino => 17
-      },
-      :insalubridade => "média",
-      :periculosidade => 0.30,
-      :dependentes => 2,
-      :horas_extras => %{
-        :domingos_feriados => 1,
-        :dias_uteis => 2
-      }
-    }
-  ]
 
-  def calcular_inss do
-    :inss
+  def calcular_inss (salario_base) do
+    salario_base
   end
 
   def calcular_fgts do

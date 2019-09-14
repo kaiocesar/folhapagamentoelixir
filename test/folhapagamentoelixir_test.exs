@@ -2,8 +2,28 @@ defmodule FolhapagamentoelixirTest do
   use ExUnit.Case
   doctest Folhapagamentoelixir
 
+  @valid_attrs [%{
+      :nome => "Brains Adams",
+      :salario_base => 3000,
+      :base_horas => 220,
+      :jornada => %{
+        :inicio => 8,
+        :refeicao => 60,
+        :termino => 17
+      },
+      :insalubridade => "média",
+      :periculosidade => 0.30,
+      :dependentes => 2,
+      :horas_extras => %{
+        :domingos_feriados => 1,
+        :dias_uteis => 2
+      }
+    }
+  ]
+
   test "Calcular INSS" do
-    assert Folhapagamentoelixir.calcular_inss() == :inss
+    [head] = @valid_attrs
+    assert Folhapagamentoelixir.calcular_inss(head[:salario_base]) == 3000
   end
 
   test "Calcular FGTS" do
