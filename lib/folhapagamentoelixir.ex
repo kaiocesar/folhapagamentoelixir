@@ -42,6 +42,27 @@ defmodule Folhapagamentoelixir do
       :salario_liquido
 
   """
+
+  funcionarios = [
+    %{
+      :nome => "Brains Adams",
+      :salario_base => 3000,
+      :base_horas => 220,
+      :jornada => %{
+        :inicio => 8,
+        :refeicao => 60,
+        :termino => 17
+      },
+      :insalubridade => "média",
+      :periculosidade => 0.30,
+      :dependentes => 2,
+      :horas_extras => %{
+        :domingos_feriados => 1,
+        :dias_uteis => 2
+      }
+    }
+  ]
+
   def calcular_inss do
     :inss
   end
