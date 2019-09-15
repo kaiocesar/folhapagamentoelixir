@@ -11,8 +11,8 @@ defmodule Folhapagamentoelixir do
       iex> Folhapagamentoelixir.calcular_inss(3000)
       330.0
 
-      iex> Folhapagamentoelixir.calcular_fgts()
-      :fgts
+      iex> Folhapagamentoelixir.calcular_fgts(3000)
+      240.0
 
       iex> Folhapagamentoelixir.calcular_dependentes()
       :dependentes
@@ -46,19 +46,23 @@ defmodule Folhapagamentoelixir do
 
   def calcular_inss (salario_base) do
     cond do
+      salario_base < 0 or not is_number(salario_base) ->
+        nil
       salario_base <= 1751.81 ->
-        salario_base * (8/100)
+        Float.round(salario_base * (8/100), 2)
       salario_base >= 1751.82 and salario_base <= 2919.72 ->
-        salario_base * (9/100)
+        Float.round(salario_base * (9/100), 2)
       salario_base >= 2919.73 and salario_base <= 5839.45 ->
-        salario_base * (11/100)
+        Float.round(salario_base * (11/100), 2)
       salario_base > 5839.45 ->
         642.34
     end
   end
 
-  def calcular_fgts do
-    :fgts
+  def calcular_fgts (salario_base) do
+    if is_number(salario_base) and salario_base >= 0 do
+      salario_base * (8/100)
+    end
   end
 
   def calcular_dependentes do
