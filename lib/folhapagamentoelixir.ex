@@ -14,11 +14,11 @@ defmodule Folhapagamentoelixir do
       iex> Folhapagamentoelixir.calcular_fgts(3000)
       240.0
 
-      iex> Folhapagamentoelixir.calcular_dependentes()
-      :dependentes
+      iex> Folhapagamentoelixir.calcular_dependentes(2)
+      379.18
 
-      iex> Folhapagamentoelixir.calcular_irrf()
-      :irrf
+      iex> Folhapagamentoelixir.calcular_irrf(379.18, 330, 3000)
+      29.01
 
       iex> Folhapagamentoelixir.calcular_horas_extras()
       :horas_extras
@@ -59,18 +59,30 @@ defmodule Folhapagamentoelixir do
     end
   end
 
-  def calcular_fgts (salario_base) do
+  def calcular_fgts(salario_base) do
     if is_number(salario_base) and salario_base >= 0 do
       salario_base * (8/100)
     end
   end
 
-  def calcular_dependentes do
-    :dependentes
+  def calcular_dependentes(qtd_dependentes) when is_number(qtd_dependentes) do
+    qtd_dependentes * 189.59
   end
 
-  def calcular_irrf do
-    :irrf
+  def calcular_irrf(valor_dependentes, valor_inss, salario_base) do
+    salario_descontado = salario_base - valor_inss - valor_dependentes
+    cond do
+      salario_descontado <= 1903.98 ->
+        0
+      salario_descontado >= 1903.99 and salario_descontado <= 2826.65 ->
+        Float.round((salario_descontado * 0.075) - 142.80, 2)
+      salario_descontado >= 2826.66 and salario_descontado <= 3751.05 ->
+        Float.round((salario_descontado * 0.15) - 354.80, 2)
+      salario_descontado >= 3751.06 and salario_descontado <= 4664.68 ->
+        Float.round((salario_descontado * 0.225) - 636.13, 2)
+      salario_descontado >= 4664.69 ->
+        Float.round((salario_descontado * 0.275) - 869.36, 2)
+    end
   end
 
   def calcular_horas_extras do

@@ -71,13 +71,39 @@ defmodule FolhapagamentoelixirTest do
     end
   end
 
-  test "Calcular dependentes" do
-    assert Folhapagamentoelixir.calcular_dependentes() == :dependentes
+  describe "# Calculo de dependentes: " do
+    test "Dois dependentes" do
+      assert Folhapagamentoelixir.calcular_dependentes(2) == 379.18
+    end
+    test "Nenhum dependente" do
+      assert Folhapagamentoelixir.calcular_dependentes(0) == 0
+    end
   end
 
-  test "Calcular IRRF" do
-    assert Folhapagamentoelixir.calcular_irrf() == :irrf
+  describe "# Calculo do IRRF" do
+    test "Salário de R$1.500,00 e 1 dependente (aliquota nula)" do
+      valor_inss = Folhapagamentoelixir.calcular_inss(1500)
+      assert Folhapagamentoelixir.calcular_dependentes(1)
+             |> Folhapagamentoelixir.calcular_irrf(valor_inss, 1500) == 0
+    end
+    test "Salário de R$3.000,00 e 2 dependentes (aliquota 7,5%)" do
+      valor_inss = Folhapagamentoelixir.calcular_inss(3000)
+      assert Folhapagamentoelixir.calcular_dependentes(2)
+             |> Folhapagamentoelixir.calcular_irrf(valor_inss, 3000) == 29.01
+    end
+    test "Salário de R$3.800,00 e 2 dependentes (aliquota 15%)" do
+      valor_inss = Folhapagamentoelixir.calcular_inss(3800)
+      assert Folhapagamentoelixir.calcular_dependentes(2)
+             |> Folhapagamentoelixir.calcular_irrf(valor_inss, 3800) == 95.62
+    end
+    test "Salário de R$4.600,00 e nenhum dependente (aliquota 22,5%)" do
+      valor_inss = Folhapagamentoelixir.calcular_inss(4600)
+      assert Folhapagamentoelixir.calcular_dependentes(0)
+             |> Folhapagamentoelixir.calcular_irrf(valor_inss, 4600) == 285.02
+    end
+
   end
+
 
   test "Calcular Horas Extras" do
     assert Folhapagamentoelixir.calcular_horas_extras() == :horas_extras
