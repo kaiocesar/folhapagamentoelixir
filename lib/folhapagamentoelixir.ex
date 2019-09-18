@@ -26,8 +26,8 @@ defmodule Folhapagamentoelixir do
       iex> Folhapagamentoelixir.calcular_dsr()
       :dsr
 
-      iex> Folhapagamentoelixir.calcular_vale_transporte()
-      :vale_transporte
+      iex> Folhapagamentoelixir.calcular_vale_transporte(3000, 228.80)
+      %{:vale_transporte => 228.80, :aux_transporte => 48.80}
 
       iex> Folhapagamentoelixir.calcular_vale_alimentacao()
       :vale_alimentacao
@@ -93,8 +93,12 @@ defmodule Folhapagamentoelixir do
     :dsr
   end
 
-  def calcular_vale_transporte do
-    :vale_transporte
+  def calcular_vale_transporte(salario_base, vt_necessario) do
+    vt_base = Float.round(salario_base * 0.06, 2)
+    cond do
+      vt_base < vt_necessario -> %{:vale_transporte => vt_necessario, :aux_transporte => Float.round((vt_necessario - vt_base), 2)}
+      vt_base >= vt_necessario -> %{:vale_transporte => vt_necessario, :aux_transporte => 0}
+    end
   end
 
   def calcular_vale_alimentacao do

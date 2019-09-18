@@ -113,8 +113,10 @@ defmodule FolhapagamentoelixirTest do
     assert Folhapagamentoelixir.calcular_dsr() == :dsr
   end
 
-  test "Calcular vale transporte" do
-    assert Folhapagamentoelixir.calcular_vale_transporte() == :vale_transporte
+  describe "Calculo de vale transporte" do
+    test "Salário base de R$3.000,00 com necessidade de VT de R$228,80 por mês" do
+      assert Folhapagamentoelixir.calcular_vale_transporte(3000, 228.80) == %{:vale_transporte => 228.80, :aux_transporte => 48.80}
+    end
   end
 
   test "Calcular vale alimentação" do
