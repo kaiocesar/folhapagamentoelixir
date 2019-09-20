@@ -101,8 +101,8 @@ defmodule Folhapagamentoelixir do
     end
   end
 
-  def calcular_vale_alimentacao do
-    :vale_alimentacao
+  def calcular_vale_alimentacao(salario_base) do
+    salario_base * 0.20
   end
 
   def calcular_adicional_noturno do
