@@ -29,8 +29,8 @@ defmodule Folhapagamentoelixir do
       iex> Folhapagamentoelixir.calcular_vale_transporte(3000, 228.80)
       %{:vale_transporte => 228.80, :aux_transporte => 48.80}
 
-      iex> Folhapagamentoelixir.calcular_vale_alimentacao()
-      :vale_alimentacao
+      iex> Folhapagamentoelixir.calcular_vale_alimentacao(3000)
+      600
 
       iex> Folhapagamentoelixir.calcular_adicional_noturno()
       :adicional_noturno
