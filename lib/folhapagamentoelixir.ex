@@ -20,8 +20,8 @@ defmodule Folhapagamentoelixir do
       iex> Folhapagamentoelixir.calcular_irrf(379.18, 330, 3000)
       29.01
 
-      iex> Folhapagamentoelixir.calcular_horas_extras()
-      :horas_extras
+      iex> Folhapagamentoelixir.calcular_horas_extras(1000, 220, 10, 4)
+      %{:he_normal => 68.18, :he_domingos => 36.36, :total_he => 104.55}
 
       iex> Folhapagamentoelixir.calcular_dsr()
       :dsr
@@ -85,11 +85,18 @@ defmodule Folhapagamentoelixir do
     end
   end
 
-  def calcular_horas_extras do
-    :horas_extras
+  def calcular_horas_extras(salario_base, base_mensal_horas, qtd_he_normais, qtd_he_domingo) do
+    base_hora = salario_base / base_mensal_horas
+    valor_he_normal = qtd_he_normais * (base_hora * 1.5)
+    valor_he_domingo = qtd_he_domingo * (base_hora * 2)
+    total_he = valor_he_normal + valor_he_domingo
+    %{:he_normal => Float.round(valor_he_normal,2), :he_domingos => Float.round(valor_he_domingo,2), :total_he => Float.round(total_he,2)}
   end
 
   def calcular_dsr do
+
+    #  DSR = (valor total das horas extras do mês / dias úteis no mês) x domingos e feriados do mês
+
     :dsr
   end
 

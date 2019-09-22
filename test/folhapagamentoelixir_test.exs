@@ -101,12 +101,11 @@ defmodule FolhapagamentoelixirTest do
       assert Folhapagamentoelixir.calcular_dependentes(0)
              |> Folhapagamentoelixir.calcular_irrf(valor_inss, 4600) == 285.02
     end
-
   end
 
-
   test "Calcular Horas Extras" do
-    assert Folhapagamentoelixir.calcular_horas_extras() == :horas_extras
+    # dias uteis 24 -> dsr 5
+    assert Folhapagamentoelixir.calcular_horas_extras(1000, 220, 10, 4) == %{:he_normal => 68.18, :he_domingos => 36.36, :total_he => 104.55}
   end
 
   test "Calcular DSR (Descanso Semanal Remunerado)" do
