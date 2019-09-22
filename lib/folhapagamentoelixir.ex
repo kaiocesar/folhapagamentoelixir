@@ -23,8 +23,8 @@ defmodule Folhapagamentoelixir do
       iex> Folhapagamentoelixir.calcular_horas_extras(1000, 220, 10, 4)
       %{:he_normal => 68.18, :he_domingos => 36.36, :total_he => 104.55}
 
-      iex> Folhapagamentoelixir.calcular_dsr()
-      :dsr
+      iex> Folhapagamentoelixir.calcular_dsr(104.55, 24, 5)
+      21.78
 
       iex> Folhapagamentoelixir.calcular_vale_transporte(3000, 228.80)
       %{:vale_transporte => 228.80, :aux_transporte => 48.80}
@@ -93,11 +93,9 @@ defmodule Folhapagamentoelixir do
     %{:he_normal => Float.round(valor_he_normal,2), :he_domingos => Float.round(valor_he_domingo,2), :total_he => Float.round(total_he,2)}
   end
 
-  def calcular_dsr do
-
+  def calcular_dsr(total_he, dias_uteis, dsr) do
     #  DSR = (valor total das horas extras do mês / dias úteis no mês) x domingos e feriados do mês
-
-    :dsr
+    Float.round((total_he / dias_uteis) *  dsr, 2)
   end
 
   def calcular_vale_transporte(salario_base, vt_necessario) do

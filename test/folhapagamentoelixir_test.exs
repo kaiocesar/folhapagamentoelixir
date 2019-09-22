@@ -108,8 +108,14 @@ defmodule FolhapagamentoelixirTest do
     assert Folhapagamentoelixir.calcular_horas_extras(1000, 220, 10, 4) == %{:he_normal => 68.18, :he_domingos => 36.36, :total_he => 104.55}
   end
 
-  test "Calcular DSR (Descanso Semanal Remunerado)" do
-    assert Folhapagamentoelixir.calcular_dsr() == :dsr
+
+  describe "Calcular DSR (Descanso Semanal Remunerado)" do
+    test "Salario base R$1.000,00, jornada de 220 horas/mês e total 14 horas extras (R$104,55)" do
+      assert Folhapagamentoelixir.calcular_dsr(104.55, 24, 5) == 21.78
+    end
+    test "R$1.000,00 de horas extras, 24 dias uteis, 6 dsr" do
+      assert Folhapagamentoelixir.calcular_dsr(1000, 24, 6) == 250
+    end
   end
 
   describe "Calculo de vale transporte" do
