@@ -32,8 +32,8 @@ defmodule Folhapagamentoelixir do
       iex> Folhapagamentoelixir.calcular_vale_alimentacao(3000)
       600.0
 
-      iex> Folhapagamentoelixir.calcular_adicional_noturno()
-      :adicional_noturno
+      iex> Folhapagamentoelixir.calcular_adicional_noturno(3000, 220)
+      16.36
 
       iex> Folhapagamentoelixir.calcular_adicional_insalubridade()
       :adicional_insalubridade
@@ -112,8 +112,8 @@ defmodule Folhapagamentoelixir do
     Float.round(salario_base * 0.20, 2)
   end
 
-  def calcular_adicional_noturno do
-    :adicional_noturno
+  def calcular_adicional_noturno(salario_base, base_horas_mensais) do
+    Float.round((salario_base / base_horas_mensais) * 1.20, 2)
   end
 
   def calcular_adicional_insalubridade do

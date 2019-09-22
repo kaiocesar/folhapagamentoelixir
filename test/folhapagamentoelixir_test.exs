@@ -122,8 +122,13 @@ defmodule FolhapagamentoelixirTest do
     assert Folhapagamentoelixir.calcular_vale_alimentacao(3000) == 600.0
   end
 
-  test "Calcular adicional noturno" do
-    assert Folhapagamentoelixir.calcular_adicional_noturno() == :adicional_noturno
+  describe "Calculo de adicional noturno" do
+    test "Salário de R$3.000,00 com jornada de 220 horas/mês" do
+      assert Folhapagamentoelixir.calcular_adicional_noturno(3000, 220) == 16.36
+    end
+    test "Sálário de R$1.200,00 com jornada de 180 horas/mês" do
+      assert Folhapagamentoelixir.calcular_adicional_noturno(1200, 180) == 8
+    end
   end
 
   test "Calcular adicional insalubridade" do
