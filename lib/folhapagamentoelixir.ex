@@ -35,8 +35,8 @@ defmodule Folhapagamentoelixir do
       iex> Folhapagamentoelixir.calcular_adicional_noturno(3000, 220)
       16.36
 
-      iex> Folhapagamentoelixir.calcular_adicional_insalubridade()
-      :adicional_insalubridade
+      iex> Folhapagamentoelixir.calcular_adicional_insalubridade("mínimo")
+      99.8
 
       iex> Folhapagamentoelixir.calcular_salario_liquido()
       :salario_liquido
@@ -116,8 +116,13 @@ defmodule Folhapagamentoelixir do
     Float.round((salario_base / base_horas_mensais) * 1.20, 2)
   end
 
-  def calcular_adicional_insalubridade do
-    :adicional_insalubridade
+  def calcular_adicional_insalubridade(grau) do
+    salario_minimo_nacional = 998
+    cond do
+      grau == "mínimo" -> Float.round(salario_minimo_nacional * 0.10, 2)
+      grau == "médio" -> Float.round(salario_minimo_nacional * 0.20, 2)
+      grau == "máximo" -> Float.round(salario_minimo_nacional * 0.40, 2)
+    end
   end
 
   def calcular_salario_liquido do

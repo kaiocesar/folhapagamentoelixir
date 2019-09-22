@@ -131,8 +131,16 @@ defmodule FolhapagamentoelixirTest do
     end
   end
 
-  test "Calcular adicional insalubridade" do
-    assert Folhapagamentoelixir.calcular_adicional_insalubridade() == :adicional_insalubridade
+  describe "Calcular adicional insalubridade" do
+    test "grau mínimo" do
+      assert Folhapagamentoelixir.calcular_adicional_insalubridade("mínimo") == 99.8
+    end
+    test "grau médio" do
+      assert Folhapagamentoelixir.calcular_adicional_insalubridade("médio") == 199.6
+    end
+    test "grau máximo" do
+      assert Folhapagamentoelixir.calcular_adicional_insalubridade("máximo") == 399.2
+    end
   end
 
   test "Calcular Salario Liquido" do
