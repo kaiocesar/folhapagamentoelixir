@@ -30,7 +30,7 @@ defmodule Folhapagamentoelixir do
       %{:vale_transporte => 228.80, :aux_transporte => 48.80}
 
       iex> Folhapagamentoelixir.calcular_vale_alimentacao(3000)
-      600
+      600.0
 
       iex> Folhapagamentoelixir.calcular_adicional_noturno()
       :adicional_noturno
@@ -102,7 +102,7 @@ defmodule Folhapagamentoelixir do
   end
 
   def calcular_vale_alimentacao(salario_base) do
-    salario_base * 0.20
+    Float.round(salario_base * 0.20, 2)
   end
 
   def calcular_adicional_noturno do

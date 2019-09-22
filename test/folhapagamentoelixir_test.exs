@@ -120,7 +120,7 @@ defmodule FolhapagamentoelixirTest do
   end
 
   test "Calcular vale alimentação" do
-    assert Folhapagamentoelixir.calcular_vale_alimentacao() == :vale_alimentacao
+    assert Folhapagamentoelixir.calcular_vale_alimentacao(3000) == 600.0
   end
 
   test "Calcular adicional noturno" do
