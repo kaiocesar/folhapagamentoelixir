@@ -15,6 +15,12 @@ def deps do
 end
 ```
 
+### refactories
+- adicionar os valores referencia em um arquivo global de constantes, são os valores: base inss, fgts, irrf, salario mínimo nacional
+- adicionar tratamento a entrada de parametros das funções
+- melhorar o retorno das funções
+- melhorar a forma de retorno de valores monetários
+
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at [https://hexdocs.pm/folhapagamentoelixir](https://hexdocs.pm/folhapagamentoelixir).
