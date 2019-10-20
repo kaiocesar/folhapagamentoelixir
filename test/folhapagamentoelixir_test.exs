@@ -151,7 +151,11 @@ defmodule FolhapagamentoelixirTest do
 
   describe "Calcular Salario Liquido" do
     test "salário bruto nulo" do
-      assert Folhapagamentoelixir.calcular_salario_liquido(nil) == :error
+      assert Folhapagamentoelixir.calcular_salario_liquido(nil, nil) == nil
+    end
+
+    test "salário de R$3.000,00" do
+      assert Folhapagamentoelixir.calcular_salario_liquido(3000,0) == 330.0
     end
   end
 end

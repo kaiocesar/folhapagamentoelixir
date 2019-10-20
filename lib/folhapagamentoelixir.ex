@@ -39,7 +39,7 @@ defmodule Folhapagamentoelixir do
       99.8
 
       iex> Folhapagamentoelixir.calcular_salario_liquido(nil, nil)
-      :error
+      nil
 
   """
 
@@ -124,6 +124,7 @@ defmodule Folhapagamentoelixir do
   end
 
   def calcular_salario_liquido(salario_bruto, qtd_dependentes) do
-    :salario_liquido
+    salario_bruto |> calcular_inss
   end
+
 end
