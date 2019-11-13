@@ -38,8 +38,8 @@ defmodule Folhapagamentoelixir do
       iex> Folhapagamentoelixir.calcular_adicional_insalubridade("mínimo")
       99.8
 
-      iex> Folhapagamentoelixir.calcular_salario_liquido(nil, nil)
-      nil
+      iex> Folhapagamentoelixir.calcular_salario_liquido(3000, 0)
+      330
 
   """
 
