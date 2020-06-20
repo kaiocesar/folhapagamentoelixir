@@ -1,8 +1,5 @@
 version: '3.5'
 services:
-        db:
-                image: postgres
-
         web:
                 build: .
                 volumes: 
@@ -11,7 +8,5 @@ services:
                           target: /app
                 ports:
                         - "4000:4000"
-                depends_on:
-                        - db
                 command:
                         - ./run.sh
